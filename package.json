@@ -1,0 +1,16 @@
+{
+  "name": "xpress-world",
+  "version": "1.0.0",
+  "description": "a skeleton for node-express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2"
+  },
+  "repository": "https://github.com/petershank/node-express.git"
+}
