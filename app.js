@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 
 // in some deployment environments, such as Heroku, process.env.PORT will be set dynamically 
-// to a value you can't control, even though your publicly visible app will be served on port 80
+// to a value you can't control, even though your publicly visible app will be served on port 80 or so
 
 var port = process.env.PORT || 8080; 
 
