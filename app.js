@@ -8,6 +8,6 @@ const app = express();
 
 var port = process.env.PORT || 8080; 
 
-app.get('/', (req, res) => res.send('Greetings from port ' + port));
+app.get('/', (req, res) => res.send('Greetings from port ' + port + ' and you rock.'));
 
 app.listen(port, () => console.log('Listening on port ' + port));
