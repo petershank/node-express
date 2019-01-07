@@ -27,6 +27,6 @@ app.use('/api', router);
 
 
 
-//app.get('/', (req, res) => res.send('Hello, world.'));
+app.get('/', (req, res) => res.send('Hello, world.'));
 
 app.listen(port, () => console.log('Listening on port ' + port));
