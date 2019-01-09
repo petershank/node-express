@@ -13,12 +13,9 @@ mongoose.connect('mongodb://petershank:shank2go@ds149672.mlab.com:49672/dev-test
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// in some deployment environments, such as Heroku, process.env.PORT will be set dynamically
-// to a value you can't control, even though your publicly visible app will be served on port 80 or so
+const port = process.env.PORT || 8080;
 
-var port = process.env.PORT || 8080;
-
-var router = express.Router();              // get an instance of the express Router
+const router = express.Router();              // get an instance of the express Router
 
 router.use((req, res, next) => {
     res.append('Access-Control-Allow-Origin', ['*']);
