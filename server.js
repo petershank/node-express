@@ -1,4 +1,4 @@
-// a bare bones http server implemented in node and express
+// a bare bones restful api, implemented as an http server using node and express
 // https://scotch.io/tutorials/build-a-restful-api-using-node-and-express-4
 
 const express = require('express');
@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const Bear = require('./models/bear.js');
 
-mongoose.connect('mongodb://petershank:shank2go@ds149672.mlab.com:49672/dev-test'); // connect to our database
+mongoose.connect('mongodb://petershank:shank2go@ds149672.mlab.com:49672/dev-test');
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -27,13 +27,11 @@ router.use((req, res, next) => {
     next();
 });
 
+// log activities
 router.use(function(req, res, next) {
-    // do logging
     console.log('Something is happening.');
-    next(); // make sure we go to the next routes and don't stop here
+    next();
 });
-
-
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
@@ -42,7 +40,7 @@ router.get('/', function(req, res) {
 
 // more routes for our API will happen here
 
-// on routes that end in /bears
+// handle routes that end in /bears
 // ----------------------------------------------------
 router.route('/bears')
 
