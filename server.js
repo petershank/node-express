@@ -1,8 +1,14 @@
 // a bare bones http server implemented in node and express
+// https://scotch.io/tutorials/build-a-restful-api-using-node-and-express-4
 
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const Bear = require('./models/bear.js');
+
+mongoose.connect('mongodb://petershank:shank2go@ds149672.mlab.com:49672/dev-test'); // connect to our database
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -21,6 +27,13 @@ router.use((req, res, next) => {
     next();
 });
 
+router.use(function(req, res, next) {
+    // do logging
+    console.log('Something is happening.');
+    next(); // make sure we go to the next routes and don't stop here
+});
+
+
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
@@ -28,6 +41,28 @@ router.get('/', function(req, res) {
 });
 
 // more routes for our API will happen here
+
+// on routes that end in /bears
+// ----------------------------------------------------
+router.route('/bears')
+
+    // create a bear (accessed at POST http://localhost:8080/api/bears)
+    .post(function(req, res) {
+
+        var bear = new Bear();      // create a new instance of the Bear model
+        bear.name = req.body.name;  // set the bears name (comes from the request)
+
+        // save the bear and check for errors
+        bear.save(function(err) {
+            if (err)
+                res.send(err);
+
+            res.json({ message: 'Bear created!' });
+        });
+
+    });
+
+
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
