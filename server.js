@@ -7,7 +7,9 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const Bear = require('./models/bear.js');
 
-mongoose.connect('mongodb://petershank:shank2go@ds149672.mlab.com:49672/dev-test');
+const databaseUri = 'mongodb://petershank:shank2go@ds149672.mlab.com:49672/dev-test';
+
+mongoose.connect(databaseUri);
 
 
 app.use(bodyParser.urlencoded({ extended: true }));

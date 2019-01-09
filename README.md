@@ -6,3 +6,5 @@ tbd:
 * create tests
 * document the api
 * connect it to a domain
+* improve error handling
+* add user authentication
